@@ -1,0 +1,24 @@
+#@title **Installation of the required packages and dependencies**
+#@markdown Thanks to **`mamba`**, the installation takes **less than 5 mins**. \
+#@markdown It will **restart** the kernel (session).
+
+%%capture
+import contextlib
+with open("/content/installation.log", "w") as i:
+    with contextlib.redirect_stdout(i):
+
+        !pip install py3Dmol==2.0.3
+        !pip install pybel==0.15.5
+        !pip install rdkit-pypi==2022.9.5
+
+        !wget https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v1.2.0/vina_1.2.0_linux_x86_64 -O vina
+        !chmod u+x vina
+
+        !pip install condacolab
+        import condacolab
+        condacolab.install_mambaforge()
+
+        !mamba install -c conda-forge -c bioconda mgltools=1.5.7 biopython=1.80 \
+        openbabel=3.1.1 plip=2.2.2 zlib=1.2.13 xlsxwriter=3.0.3
+
+        !rm -r /content/sample_data /content/condacolab_install.log
